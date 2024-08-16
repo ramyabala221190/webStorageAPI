@@ -1,3 +1,5 @@
+Installed the Live Server extension to run the index.html.
+
 Cookies are deleted when the browser instance is closed.
 
 Local and session storage differ from each other only in lifetime and scope.

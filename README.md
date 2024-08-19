@@ -39,3 +39,17 @@ You need to then keep polling to check if the difference between the current dat
 a certain value you are expecting.
 If the difference is more, make the API call again and update the 2 keys in the local storage.
 If the difference is less, dont do anything.
+
+## BroadCast Channel
+
+It allows communication between different documents (in different windows, tabs, frames or iframes) of the same origin. Messages are broadcasted via a message event fired at all BroadcastChannel objects listening to the channel, except the object that sent the message.
+
+I open localohost:5050 in 2 tabs. When I submit the name in 1 tab, the local storage and heading will get updated in the tab. The storage will get updated in the other tab as well. To reflect in the heading,
+we use broadcast channel.
+
+### postMessage()
+
+The window.postMessage() method safely enables cross-origin communication between Window objects; e.g., between a page and a pop-up that it spawned, or between a page and an iframe embedded within it.
+
+Normally, scripts on different pages are allowed to access each other if and only if the pages they originate from share the same origin (also known as the "same-origin policy"). window.postMessage() provides a controlled mechanism to securely circumvent this restriction (if used properly).
+

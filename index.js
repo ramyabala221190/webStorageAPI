@@ -1,18 +1,34 @@
 const product={id:1,name:"NailPolish"}
+let broadcastChannel= new BroadcastChannel("name-storage-updates");
 
 
 var storage=localStorage;
 if(typeof storage !==undefined){
-    
+
 window.onload=function(){
     updateName();
+    broadcastChannel.onmessage= (ev)=>{
+        console.log(ev.data);
+        updateName();
+    }
+
+    broadcastChannel.onmessageerror = (error)=>{
+        console.log(error);
+    }
+
 }
+
 
 function submit(){
  storage.setItem("myname",document.querySelector('#myname').value);
  storage.setItem("product",JSON.stringify(product)); // always convert the value into string
  updateName();
+ broadcastUpdate();
 }
+
+function broadcastUpdate(){
+    broadcastChannel.postMessage(storage.getItem("myname"));
+};
 
 function clearStorage(){
  storage.removeItem("myname");

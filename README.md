@@ -42,7 +42,24 @@ If the difference is less, dont do anything.
 
 ## BroadCast Channel
 
+Usecase: Application opened in multiple tabs. Users logs out in one of the tabs. You can use the API
+to communicate the logging out info to other tabs so that other tabs too log out automatically.
+
 It allows communication between different documents (in different windows, tabs, frames or iframes) of the same origin. Messages are broadcasted via a message event fired at all BroadcastChannel objects listening to the channel, except the object that sent the message.
+
+Conditions:
+
+1. It is very important to note that the receiver tab receives a message from the sender tab only if 
+the receiver tab has subscribed to the channel using onmessage. So you cannot replay past messages
+to newly opened tabs.
+
+2. The sender and receiver tabs must be of the same origin.
+
+3. A sender can send to multiple receivers.
+
+3. The tab sending the message will not receive it.
+
+
 
 I open localohost:5050 in 2 tabs. When I submit the name in 1 tab, the local storage and heading will get updated in the tab. The storage will get updated in the other tab as well. To reflect in the heading,
 we use broadcast channel.
